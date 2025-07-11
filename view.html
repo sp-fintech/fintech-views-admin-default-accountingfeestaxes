@@ -1,0 +1,34 @@
+{% if feetaxe['id'] is defined %}
+    {% set feetaxeId = feetaxe['id'] %}
+    {% set title = 'Fee/Tax (' ~ feetaxe['name'] ~ ')' %}
+{% else %}
+    {% set feetaxeId = '' %}
+    {% set title = 'New Fee/Tax' %}
+{% endif %}
+{{adminltetags.useTag('content',
+    [
+        'component'                     : component,
+        'componentName'                 : componentName,
+        'componentId'                   : componentId,
+        'parentComponentId'             : parent,
+        'sectionId'                     : 'main',
+        'contentType'                   : 'sectionWithForm',
+        'cardHeader'                    : true,
+        'cardFooter'                    : true,
+        'cardType'                      : 'primary',
+        'cardIcon'                      : 'file-invoice-dollar',
+        'cardTitle'                     : title,
+        'cardAdditionalClass'           : 'rounded-0',
+        'cardBodyInclude'               : 'feestaxes/form',
+        'formButtons'                   :
+        [
+            'updateButtonId'                : feetaxeId,
+            'addActionUrl'                  : 'accounting/feestaxes/add',
+            'addSuccessRedirectUrl'         : 'accounting/feestaxes',
+            'updateActionUrl'               : 'accounting/feestaxes/update',
+            'updateSuccessRedirectUrl'      : 'accounting/feestaxes',
+            'cancelActionUrl'               : 'accounting/feestaxes',
+            'closeActionUrl'                : 'accounting/feestaxes'
+        ]
+    ]
+)}}
